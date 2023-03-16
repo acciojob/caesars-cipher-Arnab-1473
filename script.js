@@ -1,23 +1,50 @@
 // Your Script here.
-function rot13(str) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const shift = 13;
-  let result = '';
+var lookup = {
+  A: "N",
+  B: "O",
+  C: "P",
+  D: "Q",
+  E: "R",
+  F: "S",
+  G: "T",
+  H: "U",
+  I: "V",
+  J: "W",
+  K: "X",
+  L: "Y",
+  M: "Z",
+  N: "A",
+  O: "B",
+  P: "C",
+  Q: "D",
+  R: "E",
+  S: "F",
+  T: "G",
+  U: "H",
+  V: "I",
+  W: "J",
+  X: "K",
+  Y: "L",
+  Z: "M",
+  "?": "?",
+  ",": ",",
+};
 
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    const charIndex = alphabet.indexOf(char);
+function rot13(encodedStr) {
+  var words = encodedStr.split(" ");
+  let decodedArr = [];
 
-    // If char is not in the alphabet, pass it through unchanged
-    if (charIndex === -1) {
-      result += char;
-      continue;
+  for(let i=0; i<words.length; i++){
+    const word = words[i];
+    let decoded_word = "";
+
+    for(let j=0; j<word.length; j++){
+      var char = word.charAt(j);
+
+      var decoded_char = lookup[char];
+      decoded_word = decoded_word + decoded_char;
     }
-
-    // Shift the char by the shift amount
-    const shiftedIndex = (charIndex + shift) % alphabet.length;
-    result += alphabet[shiftedIndex];
+    decodedArr.push(decoded_word);
   }
-
-  return result;
+  return decodedArr.join(" ");
 }
