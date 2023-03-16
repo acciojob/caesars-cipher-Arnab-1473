@@ -48,3 +48,5 @@ function rot13(encodedStr) {
   }
   return decodedArr.join(" ");
 }
+
+module.exports = rot13;
